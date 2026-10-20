@@ -122,7 +122,7 @@ Tests cover registration/invalid payloads, JWT login, profile role protection, i
 
 ## Limitations and follow-up work
 
-- Repository source was absent in the workspace; the configured GitHub remote did not return branch refs, so no remote commit or push was possible.
+- The workspace initially contained no project files, and the remote was empty. This implementation was committed and pushed to the configured GitHub repository as the initial `main` branch.
 - Society mapping and guardian verification are intentionally managed by an administrator/coordinator through Django admin; a full membership approval workflow is not built.
 - There is no automatic coordinator assignment UI, security-specific workflow, status action controls on the coordinator page, CSV export, search box UI, decline/reassignment flow, or real-time chat; API and model support is partial for these workflows.
 - Email, SMS, and push delivery require credentials, provider adapters, retry/backoff workers, and delivery verification. Current notifications are explicitly simulated.
