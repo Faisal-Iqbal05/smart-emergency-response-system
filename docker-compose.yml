@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-neighbouraid}
+      POSTGRES_USER: ${POSTGRES_USER:-neighbouraid}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env before starting PostgreSQL}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - neighbouraid_db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-neighbouraid} -d ${POSTGRES_DB:-neighbouraid}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  neighbouraid_db:
